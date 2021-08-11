@@ -1,0 +1,24 @@
+@model SolidCRM.Models.Language
+
+@Html.AjaxFormSubmiter("myForm", "tbLanguage", true, "Action Successfully Executed")
+
+<form id="myForm" asp-action="Edit" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>

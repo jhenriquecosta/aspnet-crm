@@ -1,0 +1,85 @@
+@model SolidCRM.Models.AppSetting
+
+@Html.AjaxFormSubmiter("myForm", "tbAppSetting", true, "Action Successfully Executed")
+
+<form id="myForm" asp-action="Edit" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="AppName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="AppName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AppVersion" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="AppVersion" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsBoxedLayout" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsBoxedLayout" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsToggleRightSidebar" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsToggleRightSidebar" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FooterText" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="FooterText" class="form-control"></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="AppShortName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="AppShortName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsToggleSidebar" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsToggleSidebar" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsFixedLayout" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsFixedLayout" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Skin" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="Skin" class="form-control">
+                            <option value="skin-yellow-light">skin-yellow-light</option>
+                            <option value="skin-red-light">skin-red-light</option>
+                            <option value="skin-green-light">skin-green-light</option>
+                            <option value="skin-purple-light">skin-purple-light</option>
+                            <option value="skin-black-light">skin-black-light</option>
+                            <option value="skin-blue-light">skin-blue-light</option>
+                            <option value="skin-yellow">skin-yellow dark</option>
+                            <option value="skin-red">skin-red dark</option>
+                            <option value="skin-green">skin-green dark</option>
+                            <option value="skin-purple">skin-purple dark</option>
+                            <option value="skin-black">skin-black dark</option>
+                            <option value="skin-blue">skin-blue dark</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>

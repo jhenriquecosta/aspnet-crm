@@ -1,0 +1,105 @@
+@model SolidCRM.Models.Invoice
+<link href="~/theme/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+<script src="~/theme/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<link href="~/theme/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+<script src="~/theme/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.select2').select2({ maximumSelectionLength: 1 });
+    });
+</script>
+@Html.AjaxFormSubmiter("myForm", "tbInvoice", true, "Action Successfully Executed")
+
+<form id="myForm" asp-action="Create" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="BillDate" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input type="text" asp-for="BillDate" class="form-control" />
+                        <script>$(function () { $('#BillDate').datepicker({ autoclose: true }); });</script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PaymentModeId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="PaymentModeId" asp-items="ViewBag.PaymentModes" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OtherInvoiceCode" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="OtherInvoiceCode" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="CreatedBy" value="@Env.GetUserInfo("Id",User.Claims)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CountryId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="CountryId" asp-items="ViewBag.Countrys" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClientAddressId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="ClientAddressId" asp-items="ViewBag.ClientAddresss" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="DueDate" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input type="text" asp-for="DueDate" class="form-control" />
+                        <script>$(function () { $('#DueDate').datepicker({ autoclose: true }); });</script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="To" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="To" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Address" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CompanyId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="CompanyId" asp-items="ViewBag.Companys" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ZipCode" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="ZipCode" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mobile" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Mobile" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>

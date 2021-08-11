@@ -1,0 +1,120 @@
+@model SolidCRM.Models.User
+
+<link href="~/theme/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+<script src="~/theme/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.select2').select2({ maximumSelectionLength: 1 });
+    });
+</script>
+@Html.AjaxFormSubmiter("myForm", "tbUser", true, "Action Successfully Executed")
+
+<form id="myForm" asp-action="Create" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="UserName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="UserName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="FirstName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfilePicture" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <div class="btn btn-default btn-file">
+                            <i class="fa fa-paperclip"></i>
+                            ProfilePicture
+                            <input asp-for="ProfilePicture" type="file" style="margin-top:10px" />
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Facebook" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Facebook" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Skype" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Skype" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LanguageId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="LanguageId" asp-items="ViewBag.Languages" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Phone" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsActive" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsActive" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Password" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Password" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="LastName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LinkedIn" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="LinkedIn" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailSignature" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="EmailSignature" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DirectionId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="DirectionId" asp-items="ViewBag.Directions" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ChangePasswordCode" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="ChangePasswordCode" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>

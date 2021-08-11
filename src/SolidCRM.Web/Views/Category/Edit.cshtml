@@ -1,0 +1,60 @@
+@model SolidCRM.Models.Category
+
+<link href="~/theme/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+<script src="~/theme/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.select2').select2({ maximumSelectionLength: 1 });
+    });
+</script>
+@Html.AjaxFormSubmiter("myForm", "tbCategory", true, "Action Successfully Executed")
+
+<form id="myForm" asp-action="Edit" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Title" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Title" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryImage" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <div class="btn btn-default btn-file">
+                            <i class="fa fa-paperclip"></i>
+                            CategoryImage
+                            <input asp-for="CategoryImage" type="file" style="margin-top:10px" />
+                        </div>
+                        <input type="hidden" name="CategoryImage4" value="@Model.CategoryImage"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsActive" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsActive" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Details" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Details" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ParentId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="ParentId" asp-items="ViewBag.Categorys" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>

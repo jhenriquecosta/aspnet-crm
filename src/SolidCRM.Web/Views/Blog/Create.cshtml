@@ -1,0 +1,65 @@
+@model SolidCRM.Models.Blog
+<link href="~/theme/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+<script src="~/theme/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+@Html.AjaxFormSubmiter("myForm", "tbBlog", true, "Action Successfully Executed")
+
+<form id="myForm" asp-action="Create" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Title" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Title" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="AddedBy" value="@Env.GetUserInfo("Id",User.Claims)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="ModifiedBy" value="@Env.GetUserInfo("Id",User.Claims)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsPublished" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="IsPublished" style="margin-top:10px" type="checkbox" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Details" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Details" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateAdded" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input type="text" asp-for="DateAdded" class="form-control" />
+                        <script>$(function () { $('#DateAdded').datepicker({ autoclose: true }); });</script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <input type="hidden" asp-for="DateModied" value="@DateTime.Now" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ViewCount" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="ViewCount" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>

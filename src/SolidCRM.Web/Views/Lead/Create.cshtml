@@ -1,0 +1,105 @@
+@model SolidCRM.Models.Lead
+<link href="~/theme/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+<script src="~/theme/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<link href="~/theme/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+<script src="~/theme/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.select2').select2({ maximumSelectionLength: 1 });
+    });
+</script>
+@Html.AjaxFormSubmiter("myForm", "tbLead", true, "Action Successfully Executed")
+
+<form id="myForm" asp-action="Create" role="form" enctype="multipart/form-data">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Fill Required Info" })
+    <div class="modal-body form-horizontal">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Phone" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SourceId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="SourceId" asp-items="ViewBag.Sources" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OnDated" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input type="text" asp-for="OnDated" class="form-control" />
+                        <script>$(function () { $('#OnDated').datepicker({ autoclose: true }); });</script>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CountryId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="CountryId" asp-items="ViewBag.Countrys" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Position" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Position" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Website" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Website" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <input asp-for="Company" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LeadStatusId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="LeadStatusId" asp-items="ViewBag.LeadStatuss" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AssignedToUserId" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <select asp-for="AssignedToUserId" asp-items="ViewBag.Users" multiple="multiple" style="width: 100%" class="form-control select2"><option value="">Select</option> </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="col-lg-4 col-sm-6 control-label"></label>
+                    <div class="col-lg-6">
+                        <textarea asp-for="Address" class="form-control"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { })
+</form>
